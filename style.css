@@ -523,3 +523,78 @@ body.started #infoBtn {
     font-size: 24px;
   }
 }
+
+/* =========================================================
+   LANDSCAPE PHONE OVERRIDES
+========================================================= */
+@media (max-width: 900px) and (orientation: landscape) {
+  :root{
+    --piano-h: clamp(160px, 35vh, 220px);
+  }
+
+  .app{
+    grid-template-rows: 1fr var(--piano-h) !important;
+  }
+
+  #stage{
+    height: 100% !important;
+  }
+
+  /* 3 octaves like desktop but sized for landscape */
+  .keyboard{
+    display: grid !important;
+    grid-template-columns: repeat(21, 1fr) !important;
+  }
+  .blackKey{
+    width: calc(100% / 21 * 0.58) !important;
+  }
+
+  /* Hide mobile octave controls in landscape */
+  #octaveControls{
+    display: none !important;
+  }
+
+  /* Start card */
+  .startCard{
+    transform: translateY(-60px);
+  }
+
+  .title{
+    font-size: 28px;
+    margin: 0 0 24px 0;
+  }
+
+  .playBtn{
+    width: 70px;
+    height: 70px;
+  }
+
+  .playIcon{
+    font-size: 54px;
+    line-height: 70px;
+  }
+
+  /* Info button back to normal position */
+  #infoBtn{
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .helpImg--phone {
+    display: block;
+    width: 50vw;
+    max-height: 70vh;
+  }
+
+  .helpImg--desktop {
+    display: none;
+  }
+
+  .helpPanel {
+    transform: translateY(-40px) scale(0.98);
+  }
+
+  .overlay--show .helpPanel {
+    transform: translateY(-20px) scale(1);
+  }
+}
