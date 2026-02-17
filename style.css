@@ -559,34 +559,68 @@ body.started #infoBtn {
     width: calc(100% / 21 * 0.58) !important;
   }
 
-  /* Hide mobile octave controls in landscape */
-  #octaveControls{
-    display: none !important;
+  /* Show octave controls in landscape, same position as portrait */
+  body.started #octaveControls{
+    display: flex !important;
+    gap: 0;
+    position: absolute;
+    left: 18px;
+    bottom: 16px;
+    border: 2px solid #000;
+    background: #fff;
+    z-index: 90;
+  }
+
+  #octaveControls button{
+    width: 52px;
+    height: 52px;
+    aspect-ratio: 1 / 1;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    background: #fff;
+    color: #000;
+    font-family: "Lyon", serif;
+    font-size: 20px;
+    display: grid;
+    place-items: center;
+    -webkit-appearance: none;
+  }
+
+  #octaveControls button + button{
+    border-left: 2px solid #000;
   }
 
   /* Start card */
   .startCard{
-    transform: translateY(-60px);
+    transform: translateY(0px);
   }
 
   .title{
-    font-size: 28px;
-    margin: 0 0 24px 0;
+    font-size: 32px;
+    margin: 0 0 30px 0;
   }
 
   .playBtn{
-    width: 70px;
-    height: 70px;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .playIcon {
-    border-top: 32px solid transparent;
-    border-bottom: 32px solid transparent;
-    border-left: 56px solid #000;
+    border-top: 36px solid transparent;
+    border-bottom: 36px solid transparent;
+    border-left: 62px solid #000;
   }
 
-  /* Info button back to normal position */
+  /* Info button fixed top right */
   #infoBtn{
+    position: fixed !important;
+    top: 18px !important;
+    right: 18px !important;
     width: 44px !important;
     height: 44px !important;
   }
