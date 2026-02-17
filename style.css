@@ -22,7 +22,16 @@
 ========================= */
 * { box-sizing: border-box; }
 
-html, body { height: 100%; }
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  min-height: -webkit-fill-available;
+}
 
 body {
   margin: 0;
@@ -47,6 +56,8 @@ button:focus-visible {
 .app {
   height: 100vh;
   height: 100dvh;
+  height: -webkit-fill-available;
+  width: 100%;
   display: grid;
   grid-template-rows: 1fr var(--piano-h);
 }
@@ -422,6 +433,8 @@ body.started #infoBtn {
   /* make the top area actually fill the space above the piano */
   .app{
     height: 100dvh !important;
+    height: -webkit-fill-available !important;
+    width: 100vw !important;
     grid-template-rows: 1fr var(--pianoH) !important;
   }
   #stage{

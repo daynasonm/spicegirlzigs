@@ -98,6 +98,7 @@ const colHeights = new Array(8).fill(0);
 ========================= */
 let isStarted = false;
 let helpOpen = false;
+let isMuted = false;
 const held = new Map();
 
 /* =========================
@@ -259,6 +260,11 @@ window.addEventListener("keydown", (e) => {
 
   if (k === "escape") {
     if (helpOpen) closeHelp();
+    return;
+  }
+
+  if (k === "m") {
+    isMuted = !isMuted;
     return;
   }
 
@@ -506,6 +512,7 @@ function spawnWord(colNum, word) {
 }
 
 function playAudio(colNum, rowNum) {
+  if (isMuted) return;
   const src = `./audio/col${colNum}_row${rowNum}.mp3`;
   const audio = new Audio(src);
   audio.currentTime = 0;
