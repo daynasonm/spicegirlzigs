@@ -311,8 +311,8 @@ window.addEventListener("keydown", (e) => {
   const octave = clamp(baseOctave + (map.octaveOffset || 0), MIN_OCT, MAX_OCT);
 
   const pressInfo = map.kind === "white"
-    ? { kind: "white", octave, noteIndex: map.noteIndex, wordColNoteIndex: map.noteIndex }
-    : { kind: "black", octave, acc: map.acc, wordColNoteIndex: map.wordColNoteIndex };
+  ? { kind: "white", octave, noteIndex: map.noteIndex, wordColNoteIndex: map.noteIndex }
+  : { kind: "black", octave, noteIndex: map.noteIndex, wordColNoteIndex: map.noteIndex };
 
   held.set(k, pressInfo);
   pressVisual(pressInfo);
@@ -571,12 +571,14 @@ function playAudio(note, octave) {
   const src = `./audio/${filename}`;
   const audio = new Audio(src);
   
-  // Pitch shift by ±5 semitones based on octave (octave 2 = normal pitch)
-  // Octave 1 (blue) = -5 semitones, Octave 2 (yellow) = normal, Octave 3 (pink) = +5 semitones
-  const semitoneOffset = (octave - 3) * 5; // -5, 0, or +5
+  // Shift by ±7 semitones (perfect fifth) - very noticeable
+  // Octave 1 (blue) = -7 semitones, Octave 2 (yellow) = 0, Octave 3 (pink) = +7 semitones
+  const semitoneOffset = (octave - 2) * 7;
   audio.playbackRate = Math.pow(2, semitoneOffset / 12);
   
-  audio.play().catch(() => {});
+  console.log(`Playing ${filename} at octave ${octave}, playbackRate: ${audio.playbackRate.toFixed(3)}`);
+  
+  audio.play().catch((err) => console.error('Audio error:', err));
 }
 
 /* =========================
